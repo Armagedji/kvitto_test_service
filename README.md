@@ -39,18 +39,8 @@ http://localhost:8000/docs. Миграции (alembic upgrade head) накаты
 
 ## Тесты
 
-    pytest -q
+    docker compose run --rm app pytest -q
 
-Тесты гоняются против реального PostgreSQL (тот же DATABASE_URL из .env) и
-очищают таблицу payments между тестами. Перед запуском нужно убедиться, что
-миграции обновлены:
-
-    alembic upgrade head
-
-## Линт
-
-    ruff check .
-    ruff format --check .
 
 ## Примеры запросов curl
 

@@ -11,13 +11,16 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends curl \
  && rm -rf /var/lib/apt/lists/*
 
+# зависимости отдельным слоем — кэш не слетает при правке кода
 COPY pyproject.toml ./
-RUN pip install --upgrade pip && pip install .
+RUN pip install --upgrade pip && pip install -e ".[dev]"
 
 COPY app ./app
 COPY alembic ./alembic
 COPY alembic.ini ./
+COPY tests ./tests
 
 EXPOSE 8000
 
+# миграции на старте, затем uvicorn
 CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
