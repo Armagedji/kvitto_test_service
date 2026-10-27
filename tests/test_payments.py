@@ -16,8 +16,16 @@ async def test_create_card_no_promo(client: AsyncClient) -> None:
     assert body["schedule"] is None
     assert body["email"] == "a@example.com"
     assert set(body) == {
-        "id", "status", "tariff_id", "amount", "discount",
-        "method", "installment_months", "schedule", "email", "created_at",
+        "id",
+        "status",
+        "tariff_id",
+        "amount",
+        "discount",
+        "method",
+        "installment_months",
+        "schedule",
+        "email",
+        "created_at",
     }
 
 
@@ -36,9 +44,7 @@ async def test_promo_unknown_returns_422(client: AsyncClient) -> None:
 
 
 async def test_installment_without_months_returns_422(client: AsyncClient) -> None:
-    r = await client.post(
-        "/payments", json={**PAYLOAD_CARD, "method": "installment"}
-    )
+    r = await client.post("/payments", json={**PAYLOAD_CARD, "method": "installment"})
     assert r.status_code == 422
 
 
@@ -51,9 +57,7 @@ async def test_installment_bad_months_returns_422(client: AsyncClient) -> None:
 
 
 async def test_installment_months_for_card_returns_422(client: AsyncClient) -> None:
-    r = await client.post(
-        "/payments", json={**PAYLOAD_CARD, "installment_months": 3}
-    )
+    r = await client.post("/payments", json={**PAYLOAD_CARD, "installment_months": 3})
     assert r.status_code == 422
 
 

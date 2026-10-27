@@ -30,7 +30,7 @@ async def bank_webhook(
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=exc.errors(),
-        )
+        ) from exc
 
     result = await session.execute(select(Payment).where(Payment.id == payload.payment_id))
     payment = result.scalar_one_or_none()
@@ -38,7 +38,8 @@ async def bank_webhook(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="payment not found")
 
     if not webhook_service.is_transition_allowed(payment.status, payload.status):
-        return JSONResponse(status_code=409, content={"error": "invalid_transition"}) # Кастомная ошибка
+        # Кастомная ошибка
+        return JSONResponse(status_code=409, content={"error": "invalid_transition"})
 
     payment.status = payload.status
     await session.commit()

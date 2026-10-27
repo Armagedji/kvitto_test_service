@@ -15,9 +15,7 @@ async def _create(client: AsyncClient) -> str:
 
 
 def _body(payment_id: str, status: str) -> bytes:
-    return json.dumps(
-        {"payment_id": payment_id, "status": status}, separators=(",", ":")
-    ).encode()
+    return json.dumps({"payment_id": payment_id, "status": status}, separators=(",", ":")).encode()
 
 
 async def _post_webhook(client: AsyncClient, body: bytes, signature: str | None) -> object:
@@ -115,9 +113,7 @@ async def test_refunded_to_refunded_forbidden(client: AsyncClient) -> None:
 async def test_signature_is_over_raw_body(client: AsyncClient) -> None:
     pid = await _create(client)
     compact = _body(pid, "succeeded")
-    spaced = (
-        '{ "payment_id" : "' + pid + '" , "status" : "succeeded" }'
-    ).encode()
+    spaced = ('{ "payment_id" : "' + pid + '" , "status" : "succeeded" }').encode()
     # подпись от compact, отправляем spaced
     r = await _post_webhook(client, spaced, sign(compact))
     assert r.status_code == 401

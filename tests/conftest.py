@@ -6,10 +6,9 @@ from collections.abc import AsyncIterator
 import pytest
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy import text
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 from app.config import settings
-from app.db import get_session
 from app.main import app
 
 WEBHOOK_SECRET = os.environ.get("WEBHOOK_SECRET", settings.webhook_secret)

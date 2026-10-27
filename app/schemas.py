@@ -13,6 +13,7 @@ InstallmentMonths = Literal[3, 6, 12]
 
 # ---------- Tariffs ----------
 
+
 class TariffOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -22,6 +23,7 @@ class TariffOut(BaseModel):
 
 
 # ---------- Payments: вход ----------
+
 
 class PaymentCreate(BaseModel):
     tariff_id: int
@@ -43,6 +45,7 @@ class PaymentCreate(BaseModel):
 
 # ---------- Payments: выход ----------
 
+
 class PaymentOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -59,6 +62,7 @@ class PaymentOut(BaseModel):
 
 
 # ---------- Webhook ----------
+
 
 class WebhookIn(BaseModel):
     payment_id: UUID

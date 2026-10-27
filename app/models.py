@@ -37,7 +37,9 @@ class Payment(Base):
 
     id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
-    status: Mapped[str] = mapped_column(String(16), nullable=False, default=PaymentStatus.pending.value)
+    status: Mapped[str] = mapped_column(
+        String(16), nullable=False, default=PaymentStatus.pending.value
+    )
 
     tariff_id: Mapped[int] = mapped_column(ForeignKey("tariffs.id"), nullable=False)
 

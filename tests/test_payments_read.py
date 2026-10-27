@@ -53,7 +53,5 @@ async def test_list_combined_filters(client: AsyncClient) -> None:
     await _create(client, email="y@example.com")
     r = await client.get("/payments", params={"email": "x@example.com", "status": "pending"})
     assert len(r.json()) == 1
-    r2 = await client.get(
-        "/payments", params={"email": "x@example.com", "status": "succeeded"}
-    )
+    r2 = await client.get("/payments", params={"email": "x@example.com", "status": "succeeded"})
     assert r2.json() == []

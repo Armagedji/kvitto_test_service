@@ -1,11 +1,11 @@
+import uuid
+
 from sqlalchemy import select
-from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import Payment, PaymentStatus, Tariff
 from app.schemas import PaymentCreate
-
-import uuid
 
 PROMO_KVITTO10 = "KVITTO10"
 PROMO_DISCOUNT_PERCENT = 10
@@ -40,11 +40,10 @@ def build_installment_schedule(amount: int, months: int) -> list[int]:
 
 
 async def create_payment(
-        session: AsyncSession,
-        data: PaymentCreate,
-        idempotency_key: str | None = None,
+    session: AsyncSession,
+    data: PaymentCreate,
+    idempotency_key: str | None = None,
 ) -> tuple[Payment, bool]:
-
     if idempotency_key is not None:
         existing = await find_by_idempotency_key(session, idempotency_key)
         if existing is not None:

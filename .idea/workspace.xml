@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added tests with pytest">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added Docker">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alembic/versions/0001_init.py" beforeDir="false" afterPath="$PROJECT_DIR$/alembic/versions/0001_init.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/payments.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/payments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routers/webhooks.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/webhooks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/services/payments.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/payments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793102613271</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added Docker">
+      <option name="closed" value="true" />
+      <created>1793103042164</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1793103042164</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -159,6 +171,7 @@
     <MESSAGE value="Added idempotency-key to POST endpoint" />
     <MESSAGE value="Added webhooks, fixed deprecated warning" />
     <MESSAGE value="Added tests with pytest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tests with pytest" />
+    <MESSAGE value="Added Docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Docker" />
   </component>
 </project>
