@@ -1,6 +1,6 @@
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Header, Response
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -41,11 +41,19 @@ async def list_payments(
 @router.post("/payments", response_model=PaymentOut, status_code=status.HTTP_201_CREATED)
 async def create_payment(
         data: PaymentCreate,
+        response: Response,
+        idempotency_key: str | None = Header(default=None, alias="Idempotency-Key", max_length=255),
         session: AsyncSession = Depends(get_session),
 ) -> Payment:
     try:
-        return await payments_service.create_payment(session, data)
+        payment, created = await payments_service.create_payment(
+            session, data, idempotency_key=idempotency_key
+        )
     except payments_service.PromoCodeError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
     except payments_service.TariffNotFoundError as exc:
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+
+    if not created:
+        response.status_code = status.HTTP_200_OK
+    return payment

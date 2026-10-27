@@ -1,8 +1,11 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import IntegrityError
 
 from app.models import Payment, PaymentStatus, Tariff
 from app.schemas import PaymentCreate
+
+import uuid
 
 PROMO_KVITTO10 = "KVITTO10"
 PROMO_DISCOUNT_PERCENT = 10
@@ -36,7 +39,17 @@ def build_installment_schedule(amount: int, months: int) -> list[int]:
     return [base + 1] * remainder + [base] * (months - remainder)
 
 
-async def create_payment(session: AsyncSession, data: PaymentCreate) -> Payment:
+async def create_payment(
+        session: AsyncSession,
+        data: PaymentCreate,
+        idempotency_key: str | None = None,
+) -> tuple[Payment, bool]:
+
+    if idempotency_key is not None:
+        existing = await find_by_idempotency_key(session, idempotency_key)
+        if existing is not None:
+            return existing, False
+
     tariff = await session.get(Tariff, data.tariff_id)
     if tariff is None:
         raise TariffNotFoundError(f"tariff {data.tariff_id} not found")
@@ -49,6 +62,7 @@ async def create_payment(session: AsyncSession, data: PaymentCreate) -> Payment:
         schedule = build_installment_schedule(amount, data.installment_months)
 
     payment = Payment(
+        id=uuid.uuid4(),
         status=PaymentStatus.pending.value,
         tariff_id=tariff.id,
         amount=amount,
@@ -57,11 +71,24 @@ async def create_payment(session: AsyncSession, data: PaymentCreate) -> Payment:
         installment_months=data.installment_months,
         schedule=schedule,
         email=str(data.email),
+        idempotency_key=idempotency_key,
     )
     session.add(payment)
-    await session.commit()
+    try:
+        await session.commit()
+    except IntegrityError:
+        # Откат на случай проблемы с параллельными запросами
+        await session.rollback()
+        # На всякий случай проверка еще двух возможных ошибок
+        if idempotency_key is None:
+            raise
+        existing = await find_by_idempotency_key(session, idempotency_key)
+        if existing is None:
+            raise
+        return existing, False
+
     await session.refresh(payment)
-    return payment
+    return payment, True
 
 
 async def find_by_idempotency_key(session: AsyncSession, key: str) -> Payment | None:
