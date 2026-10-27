@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added models, database connection and migrations">
-      <change afterPath="$PROJECT_DIR$/app/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added Pydantic schemas">
+      <change afterPath="$PROJECT_DIR$/app/routers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/payments.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/routers/tariffs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,19 +37,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;M:/Work/PycharmProjects/kvitto_test_service/app&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "M:/Work/PycharmProjects/kvitto_test_service/app/routers"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="M:\Work\PycharmProjects\kvitto_test_service\app\routers" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\app" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\tests" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\app\services" />
-      <recent name="M:\Work\PycharmProjects\kvitto_test_service\app\routers" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -85,7 +88,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793095658599</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Pydantic schemas">
+      <option name="closed" value="true" />
+      <created>1793096123152</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1793096123152</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -102,6 +113,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Added models, database connection and migrations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added models, database connection and migrations" />
+    <MESSAGE value="Added Pydantic schemas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Pydantic schemas" />
   </component>
 </project>

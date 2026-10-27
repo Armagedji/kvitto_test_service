@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 
 from app.config import settings
+from app.routers import payments, tariffs
 
 app = FastAPI(title="Payments Service", version="0.1.0")
+
+app.include_router(payments.router)
+app.include_router(tariffs.router)
 
 
 @app.get("/health")
