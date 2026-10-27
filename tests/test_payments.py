@@ -1,3 +1,4 @@
+import pytest
 from httpx import AsyncClient
 
 PAYLOAD_CARD = {"tariff_id": 2, "email": "a@example.com", "method": "card"}
@@ -110,3 +111,36 @@ async def test_invalid_email_returns_422(client: AsyncClient) -> None:
         json={"tariff_id": 2, "email": "not-an-email", "method": "card"},
     )
     assert r.status_code == 422
+
+
+@pytest.mark.parametrize(
+    ("tariff_id", "months", "promo_code", "expected_amount"),
+    [
+        (2, 3, None, 1_990_000),
+        (2, 6, None, 1_990_000),
+        (2, 12, None, 1_990_000),
+        (3, 3, "KVITTO10", 2_691_000),
+        (3, 6, "KVITTO10", 2_691_000),
+        (3, 12, "KVITTO10", 2_691_000),
+    ],
+)
+async def test_installment_schedule_sums_to_amount(
+    client, tariff_id, months, promo_code, expected_amount
+) -> None:
+    payload = {
+        "tariff_id": tariff_id,
+        "email": "a@example.com",
+        "method": "installment",
+        "installment_months": months,
+    }
+    if promo_code is not None:
+        payload["promo_code"] = promo_code
+
+    r = await client.post("/payments", json=payload)
+    assert r.status_code == 201
+    body = r.json()
+
+    assert body["amount"] == expected_amount
+    assert len(body["schedule"]) == months
+    assert sum(body["schedule"]) == body["amount"]
+    assert body["schedule"] == sorted(body["schedule"], reverse=True)
