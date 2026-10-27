@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added idempotency-key to POST endpoint">
-      <change afterPath="$PROJECT_DIR$/app/routers/webhooks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/services/webhook.py" afterDir="false" />
+    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added webhooks, fixed deprecated warning">
+      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_idempotency.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_payments.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_payments_read.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_tariffs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_webhooks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routers/payments.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/payments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;M:/Work/PycharmProjects/kvitto_test_service/app/routers&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "M:/Work/PycharmProjects/kvitto_test_service/tests"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="M:\Work\PycharmProjects\kvitto_test_service\tests" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\app\routers" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\app" />
-      <recent name="M:\Work\PycharmProjects\kvitto_test_service\tests" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service\app\services" />
       <recent name="M:\Work\PycharmProjects\kvitto_test_service" />
     </key>
@@ -120,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793099997841</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added webhooks, fixed deprecated warning">
+      <option name="closed" value="true" />
+      <created>1793101874920</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1793101874920</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +153,7 @@
     <MESSAGE value="Added GET endpoints" />
     <MESSAGE value="Added POST endpoint" />
     <MESSAGE value="Added idempotency-key to POST endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added idempotency-key to POST endpoint" />
+    <MESSAGE value="Added webhooks, fixed deprecated warning" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added webhooks, fixed deprecated warning" />
   </component>
 </project>
