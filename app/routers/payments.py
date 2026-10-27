@@ -6,7 +6,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db import get_session
 from app.models import Payment
-from app.schemas import PaymentOut, PaymentStatus
+from app.schemas import PaymentOut, PaymentStatus, PaymentCreate
+from app.services import payments as payments_service
 
 router = APIRouter(tags=["payments"])
 
@@ -35,3 +36,16 @@ async def list_payments(
         stmt = stmt.where(Payment.status == status_filter)
     result = await session.execute(stmt)
     return list(result.scalars().all())
+
+
+@router.post("/payments", response_model=PaymentOut, status_code=status.HTTP_201_CREATED)
+async def create_payment(
+        data: PaymentCreate,
+        session: AsyncSession = Depends(get_session),
+) -> Payment:
+    try:
+        return await payments_service.create_payment(session, data)
+    except payments_service.PromoCodeError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+    except payments_service.TariffNotFoundError as exc:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
