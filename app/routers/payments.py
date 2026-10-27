@@ -50,9 +50,9 @@ async def create_payment(
             session, data, idempotency_key=idempotency_key
         )
     except payments_service.PromoCodeError as exc:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(exc))
     except payments_service.TariffNotFoundError as exc:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc))
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(exc))
 
     if not created:
         response.status_code = status.HTTP_200_OK

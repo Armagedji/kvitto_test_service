@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added POST endpoint">
+    <list default="true" id="f348b155-107f-432b-a361-63b14067242a" name="Changes" comment="Added idempotency-key to POST endpoint">
+      <change afterPath="$PROJECT_DIR$/app/routers/webhooks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/services/webhook.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routers/payments.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routers/payments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/services/payments.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/services/payments.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1793099127295</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added idempotency-key to POST endpoint">
+      <option name="closed" value="true" />
+      <created>1793099997841</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1793099997841</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,6 +140,7 @@
     <MESSAGE value="Added Pydantic schemas" />
     <MESSAGE value="Added GET endpoints" />
     <MESSAGE value="Added POST endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added POST endpoint" />
+    <MESSAGE value="Added idempotency-key to POST endpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added idempotency-key to POST endpoint" />
   </component>
 </project>
